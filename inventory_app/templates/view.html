@@ -1,0 +1,60 @@
+{% load static %}
+<head>
+	<link 	href = "{% static 'CSS/view.css' %}"	rel="stylesheet" >
+</head>
+
+<div class="topnav">
+	<a href="home.html">Home</a>
+	<a class="active" href="view.html">View Current Data</a>
+	<a href="insert.html">Insert New Data</a>
+</div>
+
+<h1> CURRENT DEVICES </h1>
+
+<div class="searchbar">
+	<div>
+		<input type="text" placeholder="Search">
+	</div>
+	<button> SEARCH </button>
+	<button> UPLOAD CSV QUERIES </button>
+</div>
+
+<div class="datatable" id="tableContainer">
+	<table>
+    <tr>
+			<th>Counter</th>
+      <th>Asset Tag</th>
+      <th>Description </th>
+      <th>Last Inventory Date</th>
+      <th>Acquistion Date</th>
+      <th>Cost</th>
+      <th>Manufacturer</th>
+      <th>Model</th>
+      <th>Serial Number</th>
+      <th>Department</th>
+      <th>Building</th>
+      <th>Room</th>
+      <th>Vendor</th>
+      <th>Notes</th>
+    </tr>
+
+	{% for instance in queryset %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{instance.asset_tag}}</td>
+<td>{{instance.asset_description}}</td>
+<td>{{instance.last_inventory_date}}</td>
+<td>{{instance.accqusation_date}}</td>
+<td>{{instance.cost }}</td>
+<td>{{instance.manufacturer}}</td>
+<td>{{instance.model_details}}</td>
+<td>{{instance.serial_number}}</td>
+<td>{{instance.department }}</td>
+<td>{{instance.building}}</td>
+<td>{{instance.room}}</td>
+<td>{{instance.vendor}}</td>
+<td>{{instance.notes}}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
