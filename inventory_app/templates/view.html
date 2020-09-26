@@ -2,6 +2,7 @@
 {% load admin_urls %}
 <head>
 	<link href = "../CSS/view.css"	rel="stylesheet" >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <div class="topnav">
@@ -23,6 +24,8 @@
 <div class="datatable" id="tableContainer">
 	<table>
     <tr>
+      <th></th>
+      <th></th>
 			<th>Counter</th>
       <th>Asset Tag</th>
       <th>Description </th>
@@ -41,31 +44,32 @@
 
 	{% for instance in queryset %}
 <tr>
-<td>{{forloop.counter}}</td>
-<td>{{instance.asset_tag}}</td>
-<td>{{instance.asset_description}}</td>
-<td>{{instance.last_inventory_date}}</td>
-<td>{{instance.accqusation_date}}</td>
-<td>{{instance.cost }}</td>
-<td>{{instance.manufacturer}}</td>
-<td>{{instance.model_details}}</td>
-<td>{{instance.serial_number}}</td>
-<td>{{instance.department }}</td>
-<td>{{instance.building}}</td>
-<td>{{instance.room}}</td>
-<td>{{instance.vendor}}</td>
-<td>{{instance.notes}}</td>
+  <td> 
+      <form action='view.html/'+{{instance.asset_tag}} method='POST'>
+        <button class="btn"><i class="fa fa-edit"></i></button>
+      </form>
+    </td>
+  <td> 
+    <form action='view.html/'+{{instance.asset_tag}}+'/delete' method='POST'>
+        <button class="btn"><i class="fa fa-trash"></i></button>
+      </form>
+  </td>
+  <td>{{forloop.counter}}</td>
+  <td>{{instance.asset_tag}}</td>
+  <td>{{instance.asset_description}}</td>
+  <td>{{instance.last_inventory_date}}</td>
+  <td>{{instance.accqusation_date}}</td>
+  <td>{{instance.cost}}</td>
+  <td>{{instance.manufacturer}}</td>
+  <td>{{instance.model_details}}</td>
+  <td>{{instance.serial_number}}</td>
+  <td>{{instance.department }}</td>
+  <td>{{instance.building}}</td>
+  <td>{{instance.room}}</td>
+  <td>{{instance.vendor}}</td>
+  <td>{{instance.notes}}</td>
 </tr>
 {% endfor %}
 </table>
-
-<div class="verticalCenter">
-  <form action='view.html/update' method='POST'>
-    <button> EDIT SELECTED RECORDS </button>
-  </form>
-  <form action='view.html/update' method='POST'>
-    <button> DELETE SELECTED RECORDS </button>
-  </form>
-</div>
 
 </div>

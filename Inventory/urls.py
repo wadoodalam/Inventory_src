@@ -22,6 +22,6 @@ urlpatterns = [
     path('', views.Home, name='home'),
     path('insert.html/', views.Input_entry, name='Input'),
     path('view.html/', views.list, name='view'),
-    path('view.html/delete', views.delete, name='delete'),
-    path('view.html/update', views.update, name='edit'),
+    path('view.html/<asset_tag>/delete', views.delete, name='delete'),
+    path('view.html/<asset_tag>', views.update, name='edit'),
 ]
