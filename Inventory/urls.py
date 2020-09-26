@@ -20,7 +20,9 @@ from inventory_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name='home'),
-    path('input/', views.Input_entry, name='Input'),
+    path('insert.html/', views.Input_entry, name='Input'),
     path('view.html/', views.list, name='view'),
-    #path('<pk>/update/', views.EditView.as_view() ),
+    path('view.html/<asset_tag>/delete', views.delete, name='delete'),
+    path('view.html/<asset_tag>/', views.update, name='edit'),
+    # Ha, Can you please add the edit and delete button in the 'view.html' file. you see the url patterns up here^. Thanks
 ]
