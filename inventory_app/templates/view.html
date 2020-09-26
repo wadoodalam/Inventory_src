@@ -1,7 +1,7 @@
 {% load static %}
 {% load admin_urls %}
 <head>
-	<link 	href = "{% static 'CSS/view.css' %}"	rel="stylesheet" >
+	<link href = "../CSS/view.css"	rel="stylesheet" >
 </head>
 
 <div class="topnav">
@@ -58,4 +58,10 @@
 </tr>
 {% endfor %}
 </table>
+
+<div class="verticalCenter">
+  <button> ADD NEW RECORD </button>
+  <button> DELETE SELECTED RECORDS </button>
+</div>
+
 </div>
