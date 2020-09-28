@@ -1,7 +1,7 @@
 {% load static %}
 {% load admin_urls %}
 <head>
-	<link href = "../CSS/view.css"	rel="stylesheet" >
+	<link href="{% static '../CSS/view.css' %}"	type="text/css" rel="stylesheet" >
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -45,14 +45,14 @@
 	{% for instance in queryset %}
 <tr>
   <td> 
-      <form action='view.html/'+{{instance.asset_tag}} method='POST'>
+      <a href='{{instance.asset_tag}}'>
         <button class="btn"><i class="fa fa-edit"></i></button>
-      </form>
+      </a>
     </td>
   <td> 
-    <form action='view.html/'+{{instance.asset_tag}}+'/delete' method='POST'>
+      <a href='{{instance.asset_tag}}/delete'>
         <button class="btn"><i class="fa fa-trash"></i></button>
-      </form>
+      </a>
   </td>
   <td>{{forloop.counter}}</td>
   <td>{{instance.asset_tag}}</td>
