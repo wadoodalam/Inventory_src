@@ -13,13 +13,12 @@
 
 <h1> CURRENT DEVICES </h1>
 
-<div class="searchbar">
-	<div>
-		<input type="text" placeholder="Search">
-	</div>
-	<button> SEARCH </button>
-	<button> UPLOAD CSV QUERIES </button>
-</div>
+<h2>Search Devices</h2>
+<form method="post" action="">
+{% csrf_token %}
+{{ form.as_p }}
+<input class="btn btn-primary" type="submit" value="Search" />
+</form>
 
 <div class="datatable" id="tableContainer">
 	<table>
@@ -44,12 +43,12 @@
 
 	{% for instance in queryset %}
 <tr>
-  <td> 
+  <td>
       <a href='{{instance.asset_tag}}'>
         <button class="btn"><i class="fa fa-edit"></i></button>
       </a>
     </td>
-  <td> 
+  <td>
       <a href='{{instance.asset_tag}}/delete'>
         <button class="btn"><i class="fa fa-trash"></i></button>
       </a>

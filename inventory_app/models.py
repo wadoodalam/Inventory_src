@@ -21,8 +21,8 @@ class Manufacturer(models.Model):
         return self.manufacturer_name
 
 class ITInventory (models.Model):
-    asset_tag = models.CharField(max_length=10, primary_key=True)
-    asset_description = models.CharField(max_length=50)
+    asset_tag = models.CharField(max_length=10, primary_key=True, blank = True)
+    asset_description = models.CharField(max_length=50, blank = True)
     category = models.CharField(max_length=50)
     class_details = models.CharField(max_length=100)
     stwd_last_name = models.CharField(max_length=30)
@@ -34,7 +34,7 @@ class ITInventory (models.Model):
     model_details = models.CharField(max_length=500)
     serial_number = models.CharField(max_length=50)
     department = models.ForeignKey(Department, on_delete = models.CASCADE)
-    building = models.ForeignKey(Building, on_delete = models.CASCADE, default='')
+    building = models.ForeignKey(Building, on_delete = models.CASCADE, default='',blank = True)
     room = models.CharField(max_length = 100)
     vendor = models.CharField(max_length=100)
     notes = models.TextField()
