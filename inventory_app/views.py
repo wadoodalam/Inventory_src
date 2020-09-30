@@ -13,7 +13,7 @@ def Input_entry(request):
     form = InputForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('/view.html')
+        return redirect('/view')
     context = {
     "form": form,
         }
