@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.Home, name='home'),
     path('insert/', views.Input_entry, name='Input'),
     path('view/', views.list, name='view'),
-    path('view/<int:asset_tag>/delete', views.delete, name='delete'),
+    path('view/<int:asset_tag>delete', views.delete, name='delete'),
     path('view/<int:asset_tag>', views.update, name='edit'),
+    path('search', views.search, name = 'search'),
 ]

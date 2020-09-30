@@ -1,20 +1,8 @@
-{% load static %}
-{% load admin_urls %}
-<head>
-	<link href="{% static '../CSS/view.css' %}"	type="text/css" rel="stylesheet" >
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<div class="topnav">
-	<a href="/home">Home</a>
-	<a class="active" href="/view">View Current Data</a>
-	<a href="/insert">Insert New Data</a>
-	<a href="/search">Search</a>
-
-</div>
-
-<h1> CURRENT DEVICES </h1>
-
+<h2>Search Devices</h2>
+<form method="GET" action="" id="searchform">
+    <input class="searchfield" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..."/>
+		<button type="submit">Submit</button>
+</form>
 
 
 <div class="datatable" id="tableContainer">
@@ -71,5 +59,3 @@
 </tr>
 {% endfor %}
 </table>
-
-</div>
