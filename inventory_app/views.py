@@ -23,7 +23,7 @@ def Input_entry(request):
 def delete(request,asset_tag = None):
     instance = get_object_or_404(ITInventory, asset_tag = asset_tag)
     instance.delete();
-    return redirect('/view.html')
+    return redirect('/view')
 
 def update(request, asset_tag = None):
     instance = get_object_or_404(ITInventory, asset_tag = asset_tag)
@@ -31,7 +31,7 @@ def update(request, asset_tag = None):
     if form.is_valid():
         instance = form.save(commit = False)
         instance = form.save()
-        return redirect('/view.html')
+        return redirect('/view')
     context = {
     "instance": instance,
     "form": form,
