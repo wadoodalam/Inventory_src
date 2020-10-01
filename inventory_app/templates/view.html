@@ -9,18 +9,23 @@
 	<a href="/home">Home</a>
 	<a class="active" href="/view">View Current Data</a>
 	<a href="/insert">Insert New Data</a>
-	<a href="/search">Search</a>
-
 </div>
 
 <h1> CURRENT DEVICES </h1>
 
-
+<div class="searchbar">
+  <form method="GET" action="" id="searchform">
+    <input class="searchfield" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..."/>
+    <button type = "submit"> SEARCH </button>
+    <button> UPLOAD CSV QUERIES </button>
+  </form>
+</div>
 
 <div class="datatable" id="tableContainer">
 	<table>
     <tr>
-
+      <th></th>
+      <th></th>
 			<th>Counter</th>
       <th>Asset Tag</th>
       <th>Description </th>
@@ -46,13 +51,6 @@
     </td>
   <td>
       <a href='{{instance.asset_tag}}/delete'>
-<<<<<<< HEAD
-=======
-  <td>
-      <a href='{{instance.asset_tag}}delete'>
->>>>>>> 22c434c572fcdeba6b45f1e9c7f921570ba556f7
-=======
->>>>>>> 3351bc469114938de52f8939e8d59c6a4eecdab7
         <button class="btn"><i class="fa fa-trash"></i></button>
       </a>
   </td>
