@@ -49,30 +49,6 @@ button {
   margin:5px;
 }
 
-.datatable table {
-  margin-top: 10;
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-.datatable tr {
-  height: 50px;
-}
-
-.datatable tr:nth-child(even) {
-  background-color: 
-  #f2f2f2
-}
-
-.actionButton {
-  text-align: center;
-  float: center;
-  padding: 15px;
-}
-
 .verticalCenter {
   text-align: center;
   float: center;

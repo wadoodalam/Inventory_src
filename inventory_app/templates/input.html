@@ -1,6 +1,6 @@
 {% load static %}
 <head>
-	<link rel="stylesheet" href="{% static 'CSS/home.css' %}"> 
+	<link rel="stylesheet" href="{% static 'CSS/input.css' %}"> 
 </head>
 
 <div class="topnav">
@@ -8,12 +8,18 @@
 	<a href="/view">View Current Data</a>
 	<a class="active" href="/insert">Insert New Data</a>
 </div>
- {{title}}
+
+<h1> INSERT NEW DEVICES </h1>
+
 <form method="post" action="">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Save" />
+        <table>
+            {% for field in form %}
+                <tr>
+                    <td>{{ field.label}}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type = "submit"> SAVE </button>
 </form>
-<body>
-  INPUT COMPUTER
-</body>

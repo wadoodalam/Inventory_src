@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.views.generic import UpdateView
 from .forms import InputForm, EditForm
 from django.shortcuts import render, redirect, get_object_or_404
+import logging
 
 # Create your views here.
 def  Home (request):
@@ -21,23 +22,20 @@ def Input_entry(request):
 
 
 def list(request):
-    queryset = ITInventory.objects.all()
-    context={
-        "queryset": queryset,
-
-        }
-    return render(request,"view.html",context)
-
-def search(request):
     if request.GET.get('q') is not None:
         query = request.GET.get('q')
-        queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__icontains = query) | Q(building__building_name__iexact = query) | Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__icontains = query)| Q(model_details__iexact = query) | Q(serial_number__icontains = query) | Q(department__dept_name__iexact = query) | Q(room__iexact = query) | Q(vendor__iexact = query) | Q(manufacturer__manufacturer_name__iexact = query))
+        queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__iexact = query) | Q(building__building_name__iexact = query) | Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__icontains = query)| Q(model_details__iexact = query) | Q(serial_number__icontains = query) | Q(department__dept_name__iexact = query) | Q(room__iexact = query) | Q(vendor__iexact = query) | Q(manufacturer__manufacturer_name__iexact = query))
         context={
                 "queryset": queryset,
                 }
-        return render(request,"search.html", context)
+        return render(request,"view.html", context)
 
-    return render(request,"search.html")
+    queryset = ITInventory.objects.all()
+    context={
+        "queryset": queryset,
+    }
+
+    return render(request,"view.html", context)
 
 
 def delete(request,asset_tag = None):
