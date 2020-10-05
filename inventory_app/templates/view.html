@@ -17,8 +17,15 @@
   <form method="GET" action="" id="searchform">
     <input class="searchfield" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..."/>
     <button type = "submit"> SEARCH </button>
-    <button> UPLOAD CSV QUERIES </button>
+
   </form>
+</div>
+<div class="export_to_csv" >
+	<form action="" method="GET">
+			<input type="checkbox" name="csv"  value="{{ request.GET.csv }}">
+			<label for="csv">Export To CSV</label>
+			<button> Genrate Report </button>
+			</form>
 </div>
 
 <div class="datatable" id="tableContainer">
