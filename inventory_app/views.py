@@ -26,11 +26,11 @@ def Input_entry(request):
 def list(request):
     if request.GET.get('csv') is not None:
         logger = logging.getLogger(__name__)
-        logger.error('Something went wrong!')
+        logger.error('Downloading csv file')
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename = "Inventory Report.csv" '
         writer = csv.writer(response)
-        writer.writerow("'asset_tag','asset_description','category','class_details','stwd_last_name','stwd_first_name','last_inventory_date','accqusation_date','cost','manufacturer','model_details','serial_number','department', 'building', 'room', 'vendor', 'notes'")
+        writer.writerow(['asset_tag','asset_description','category','class_details','stwd_last_name','stwd_first_name','last_inventory_date','accqusation_date','cost','manufacturer','model_details','serial_number','department', 'building', 'room', 'vendor', 'notes'])
         queryset = ITInventory.objects.all()
         instance = queryset
         for row in instance:
