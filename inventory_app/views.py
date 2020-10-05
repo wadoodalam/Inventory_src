@@ -10,7 +10,7 @@ import csv
 import logging
 # Create your views here.
 def  Home (request):
-    return render (request, "home.html")
+    return render (request, "base.html")
 
 def Input_entry(request):
     form = InputForm(request.POST or None)

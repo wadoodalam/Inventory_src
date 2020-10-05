@@ -1,20 +1,32 @@
 {% load static %}
 <head>
-	<link rel="stylesheet" href="{% static 'CSS/home.css' %}"> 
+	<link rel="stylesheet" href="{% static 'CSS/home.css' %}">
 </head>
 
 <div class="topnav">
 	<a class="active" href="/home">Home</a>
 	<a href="/view">View Current Data</a>
 	<a href="/insert">Insert New Data</a>
+	{% if request.user.is_authenticated %}
+	<a href="/accounts/logout">Logout</a>
+	{% else %}
+	<a href="/accounts/login">Login</a>
+	{% endif %}
+
 </div>
+
+<!-- this is the form for login, maybe more styling can be done with it. Thanks. -->
+{% block title %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
 
 <div class="description">
 	<h1> LITS INVENTORY MANAGING TOOL </h1>
 	<p> This website belongs to the Library and Information Technology services at Beloit College. Log in with your registered Beloit email to access the tool. If your email has not been authorized by the LITS, please request access using the attached form </p>
-	<div>
-		<button> LOG IN </button>
-	</div>
+
 	<div>
 		<button> REQUEST ACCESS </button>
 	</div>

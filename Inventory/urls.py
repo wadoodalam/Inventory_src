@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from inventory_app import views
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,6 @@ urlpatterns = [
     path('view/', views.list, name='view'),
     path('view/<int:asset_tag>/delete', views.delete, name='delete'),
     path('view/<int:asset_tag>', views.update, name='edit'),
+    path('accounts/',include('registration.backends.default.urls'))
+    #url(r'^accounts/', include('registration.backends.default.urls')),
 ]

@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'inventory_app',
+    'registration'
 ]
 
 MIDDLEWARE = [
@@ -78,8 +80,8 @@ WSGI_APPLICATION = 'Inventory.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'INVENTORY_MANAGEMENT',
-        'PASSWORD': '',
+        'NAME' : 'inventory',
+        'PASSWORD': 'password',
         'USER': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
@@ -131,3 +133,9 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 mimetypes.add_type("text/css", ".css", True)
+
+
+ACCOUNT_ACTIVATION_DAYS = 5 # One-week activation window
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
