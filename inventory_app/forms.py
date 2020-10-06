@@ -18,3 +18,4 @@ class EditForm(forms.ModelForm):
         fields = ['asset_description','category','class_details','stwd_last_name','stwd_first_name',
                      'last_inventory_date','accqusation_date','cost','manufacturer','model_details','serial_number',
                      'department', 'building', 'room', 'vendor', 'notes']
+                     
