@@ -36,6 +36,7 @@
       <th></th>
 			<th>Counter</th>
       <th>Asset Tag</th>
+			<th>Steward Name</th>
       <th>Description </th>
       <th>Last Inventory Date</th>
       <th>Acquistion Date</th>
@@ -50,7 +51,7 @@
       <th>Notes</th>
     </tr>
 
-	{% for instance in queryset %}
+	{% for instance in IT_queryset %}
 <tr>
   <td>
       <a href='{{instance.asset_tag}}'>
@@ -64,15 +65,16 @@
   </td>
   <td>{{forloop.counter}}</td>
   <td>{{instance.asset_tag}}</td>
+	<td>{{instance.stwd_name}}</td>
   <td>{{instance.asset_description}}</td>
   <td>{{instance.last_inventory_date}}</td>
   <td>{{instance.accqusation_date}}</td>
   <td>{{instance.cost}}</td>
-  <td>{{instance.manufacturer}}</td>
+  <td>{{instance.manufacturerID}}</td>
   <td>{{instance.model_details}}</td>
   <td>{{instance.serial_number}}</td>
-  <td>{{instance.department }}</td>
-  <td>{{instance.building}}</td>
+  <td>{{instance.departmentID}}</td>
+  <td>{{instance.buildingID}}</td>
   <td>{{instance.room}}</td>
   <td>{{instance.vendor}}</td>
   <td>{{instance.notes}}</td>

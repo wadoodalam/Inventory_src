@@ -80,8 +80,8 @@ WSGI_APPLICATION = 'Inventory.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'INVENTORY_MANAGEMENT',
-        'PASSWORD': '',
+        'NAME' : 'it_inventory',
+        'PASSWORD': 'password',
         'USER': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
