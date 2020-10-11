@@ -1,10 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Room(models.Model):
-    room_number = models.CharField(max_length = 200)
-    def __str__(self):
-        return self.room_number
+
 
 class Building(models.Model):
     building_name = models.CharField(max_length = 100)
@@ -12,6 +9,23 @@ class Building(models.Model):
 
     def __str__(self):
         return self.building_name
+class Room(models.Model):
+    room_number = models.CharField(max_length = 200)
+
+
+    def __str__(self):
+        return self.room_number
+
+class Category(models.Model):
+    category_type = models.CharField(max_length = 500)
+    def __str__(self):
+        return self.category_type
+
+
+class Manufacturer(models.Model):
+    manufacturer_name = models.CharField(max_length = 100)
+    def __str__(self):
+        return self.manufacturer_name
 
 class Department(models.Model):
     dept_name = models.CharField(max_length = 100)
@@ -21,11 +35,7 @@ class Department(models.Model):
     def __str__(self):
         return self.dept_name
 
-class Manufacturer(models.Model):
-    manufacturer_name = models.CharField(max_length = 100)
 
-    def __str__(self):
-        return self.manufacturer_name
 
 class Steward(models.Model):
     stwd_name = models.CharField(max_length = 500)
@@ -34,6 +44,7 @@ class Steward(models.Model):
     stwd_room = models.ForeignKey(Room, on_delete = models.CASCADE)
     def __str__(self):
         return self.stwd_name
+
 
 class Models(models.Model):
     model_number = models.CharField(max_length = 500)
@@ -48,10 +59,7 @@ class Vendor(models.Model):
     def __str__(self):
         return self.vendor_name
 
-class Category(models.Model):
-    category_type = models.CharField(max_length = 500)
-    def __str__(self):
-        return self.category_type
+
 
 
 class ITInventory (models.Model):

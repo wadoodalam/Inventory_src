@@ -53,16 +53,27 @@
 
 	{% for instance in IT_queryset %}
 <tr>
+	{% if perms.inventory_app.change_ITInventory %}
   <td>
+
       <a href='{{instance.asset_tag}}'>
         <button class="btn"><i class="fa fa-edit"></i></button>
       </a>
+
     </td>
+		{% else %} <td>EDIT</td>
+		{% endif %}
+
+
+	{% if perms.inventory_app.delete_ITInventory %}
   <td>
       <a href='{{instance.asset_tag}}/delete'>
         <button class="btn"><i class="fa fa-trash"></i></button>
       </a>
   </td>
+	{% else %} <td>Delete</td>
+	{% endif %}
+
   <td>{{forloop.counter}}</td>
   <td>{{instance.asset_tag}}</td>
 	<td>{{instance.stwd_name}}</td>
