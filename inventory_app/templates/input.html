@@ -8,6 +8,13 @@
 <div class="topnav">
 	<a href="/home">Home</a>
 	<a href="/view">View Current Devices</a>
+	<div class = "authentication">
+    {% if request.user.is_authenticated %}
+    <a href="/accounts/logout">Logout</a>
+    {% else %}
+    <a href="/accounts/login">Login</a>
+    {% endif %}
+  </div>
   <div class="dropdown">
       <button class="dropbtn">Insert New Data
         <i class="fa fa-caret-down"></i>
@@ -24,13 +31,7 @@
         <a href="/room">Room</a>
       </div>
   </div>
-  <div class = "authentication">
-    {% if request.user.is_authenticated %}
-    <a href="/accounts/logout">Logout</a>
-    {% else %}
-    <a href="/accounts/login">Login</a>
-    {% endif %}
-  </div>
+
 </div>
 
 {% if perms.inventory_app.add_itinventory %}
