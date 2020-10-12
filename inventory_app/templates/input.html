@@ -1,5 +1,5 @@
 {% load static %}
-{% if perms.inventory_app.add_itinventory %}
+
 
 <head>
 	<link rel="stylesheet" href="{% static 'CSS/input.css' %}">
@@ -17,6 +17,7 @@
 	<a href="/accounts/login">Login</a>
 	{% endif %}
 </div>
+{% if perms.inventory_app.add_itinventory %}
 {% if request.user.is_authenticated %}
 <h1> INSERT NEW DEVICES </h1>
 
@@ -40,5 +41,7 @@
 {% endif %}
 
 {% else %}
-	<td>Permission Not Granted</td>
+	<div>
+		<h2>You Don't Have Permission To Input</h2>
+	</div>
 {% endif %}

@@ -12,7 +12,7 @@ from itertools import chain
 
 # Create your views here.
 def  Home (request):
-    return render (request, "home.html")
+    return render (request, "base.html")
 
 def Input_entry(request):
     form = InputForm(request.POST or None)
@@ -93,6 +93,7 @@ def Building_entry(request):
     "form": form,
         }
     return render(request, "building.html",context)
+
 def Room_entry(request):
     form = RoomForm(request.POST or None)
     if form.is_valid():
@@ -102,7 +103,6 @@ def Room_entry(request):
     "form": form,
         }
     return render(request, "room.html",context)
-
 
 
 def Department_entry(request):
@@ -120,7 +120,7 @@ def list(request):
         query = request.GET.get('q')
         IT_queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__icontains = query) | Q(buildingID__building_name__iexact = query) |
         Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__iexact = query)| Q(model_details__model_number__iexact = query) |
-        Q(serial_number__iexact = query) | Q(departmentID__dept_name__iexact = query) | Q(room__room_number__iexact = query) | Q(vendor__vendor_name__iexact = query) | 
+        Q(serial_number__iexact = query) | Q(departmentID__dept_name__iexact = query) | Q(room__room_number__iexact = query) | Q(vendor__vendor_name__iexact = query) |
         Q(manufacturerID__manufacturer_name__iexact = query) | Q(notes__icontains = query) | Q(stwd_name__stwd_name__icontains = query))
         context={
                 "IT_queryset": IT_queryset,
