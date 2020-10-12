@@ -1,13 +1,14 @@
 from django.shortcuts import (get_object_or_404,  render,  HttpResponseRedirect)
-from .models import ITInventory,Building,Department
+from .models import ITInventory,Building,Department,Category,Manufacturer, Models, Steward, Vendor
 from django.db.models import Q
 from django.views.generic import UpdateView
-from .forms import InputForm, EditForm
+from .forms import InputForm, EditForm, CategoryForm, DepartmentForm, ManufacturerForm, ModelForm, StewardForm, VendorForm
 from django.shortcuts import render, redirect, get_object_or_404
 import logging
 from django.http import HttpResponse
 import csv
 import logging
+from itertools import chain
 # Create your views here.
 def  Home (request):
     return render (request, "home.html")
@@ -22,38 +23,110 @@ def Input_entry(request):
         }
     return render(request, "input.html",context)
 
+def Category_entry(request):
+    form = CategoryForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "category.html",context)
+
+def Department_entry(request):
+    form = DepartmentForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "department.html",context)
+
+def Manufacturer_entry(request):
+    form = ManufacturerForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "manu.html",context)
+
+def Models_entry(request):
+    form = ModelForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "models.html",context)
+
+def Steward_entry(request):
+    form = StewardForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "stwd.html",context)
+
+def Vendor_entry(request):
+    form = VendorForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "vendor.html",context)
+
+
+def Department_entry(request):
+    form = DepartmentForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "department.html",context)
 
 def list(request):
     if request.GET.get('q') is not None:
         query = request.GET.get('q')
-        queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__iexact = query) | Q(building__building_name__iexact = query) | Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__icontains = query)| Q(model_details__iexact = query) | Q(serial_number__icontains = query) | Q(department__dept_name__iexact = query) | Q(room__iexact = query) | Q(vendor__iexact = query) | Q(manufacturer__manufacturer_name__iexact = query))
+        IT_queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__iexact = query) | Q(buildingID__building_name__iexact = query) | Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__icontains = query)| Q(model_details__model_number__iexact = query) | Q(serial_number__icontains = query) | Q(departmentID__dept_name__iexact = query) | Q(room__room_number__iexact = query) | Q(vendor__vendor_name__iexact = query) | Q(manufacturerID__manufacturer_name__iexact = query))
         context={
-                "queryset": queryset,
+                "IT_queryset": IT_queryset,
                 }
         if request.GET.get('generate report') is not None:
-            return generate_report(request, queryset)
+            return generate_report(request, IT_queryset)
         return render(request,"view.html", context)
 
-    queryset = ITInventory.objects.all()
+    IT_queryset = ITInventory.objects.all()
+
+
     context={
-        "queryset": queryset,
+        "IT_queryset": IT_queryset,
     }
 
     if request.GET.get('generate report') is not None:
-        return generate_report(request, queryset)
+        return generate_report(request, IT_queryset)
     return render(request,"view.html", context)
 
-def generate_report(request, queryset):
+def generate_report(request, IT_queryset):
     logger = logging.getLogger(__name__)
     logger.error(request)
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename = "Inventory Report.csv" '
     writer = csv.writer(response)
-    writer.writerow(['asset_tag','asset_description','category','class_details','stwd_last_name','stwd_first_name','last_inventory_date','accqusation_date','cost','manufacturer','model_details','serial_number','department', 'building', 'room', 'vendor', 'notes'])
-    for row in queryset:
-        writer.writerow([row.asset_tag, row.asset_description, row.category, row.class_details, row.stwd_last_name, row.stwd_first_name,
-                        row.last_inventory_date, row.accqusation_date, row.cost, row.manufacturer, row.model_details, row.serial_number,
-                        row.department, row.building, row.room, row.vendor, row.notes])
+    writer.writerow(['asset_tag','asset_description','category','class_details','stwd_name''last_inventory_date','accqusation_date','cost','manufacturer','model_details','serial_number','department', 'building', 'room', 'vendor', 'notes'])
+    for row in IT_queryset:
+        writer.writerow([row.asset_tag, row.asset_description, row.category, row.class_details, row.stwd_name,
+                        row.last_inventory_date, row.accqusation_date, row.cost, row.manufacturerID, row.model_details, row.serial_number,
+                        row.departmentID, row.buildingID, row.room, row.vendor, row.notes])
     return response
 
 def delete(request,asset_tag = None):
