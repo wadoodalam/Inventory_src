@@ -1,12 +1,11 @@
 {% load static %}
-
 <head>
-	<link rel="stylesheet" href="{% static 'CSS/input.css' %}">
+	<link rel="stylesheet" href="{% static 'CSS/home.css' %}">
 </head>
 
 <div class="topnav">
-    <a href="/home">Home</a>
-    <a href="/view">View Current Devices</a>
+	<a class="active" href="/home">Home</a>
+	<a href="/view">View Current Devices</a>
   <div class="dropdown">
       <button class="dropbtn">Insert New Data
         <i class="fa fa-caret-down"></i>
@@ -32,24 +31,16 @@
   </div>
 </div>
 
-{% if request.user.is_authenticated %}
-<h1> INSERT NEW MODEL </h1>
+<div class="description">
+	<h1> LITS INVENTORY MANAGING TOOL </h1>
+	<p> This website belongs to the Library and Information Technology services at Beloit College. Log in with your registered Beloit email to access the tool. If your email has not been authorized by the LITS, please request access using the attached form </p>
 
-<form method="post" action="">
-        {% csrf_token %}
-        <table>
-            {% for field in form %}
-                <tr>
-                    <td>{{ field.label}}</td>
-                    <td>{{ field }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <button type = "submit"> SAVE </button>
-</form>
-
-{% else %}
-<br>
-
-<h1> Please Login </h1>
-{% endif %}
+	<div>
+		<a href="/accounts/login">
+			<button> LOG IN </button>
+		</a>
+	</div>
+	<div>
+		<button> REQUEST ACCESS </button>
+	</div>
+</div>
