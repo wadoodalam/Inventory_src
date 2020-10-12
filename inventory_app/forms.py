@@ -18,9 +18,10 @@ class EditForm(forms.ModelForm):
                      'last_inventory_date','accqusation_date','cost','manufacturerID','model_details','serial_number',
                      'departmentID', 'buildingID', 'room', 'vendor', 'notes']
 
-class Buidlingform(forms.ModelForm):
-    model = Building
-    fields = ['building_name', 'building_address']
+class BuildingForm(forms.ModelForm):
+    class Meta:
+        model = Building
+        fields = ['building_name', 'building_address']
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -51,3 +52,8 @@ class VendorForm(forms.ModelForm):
     class Meta:
         model = Vendor
         fields = ['vendor_name', 'vendor_email', 'vendor_supplier']
+
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = ['room_number']

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    #'django.contrib.auth.context_processors.auth',
     'inventory_app',
     'registration'
 ]
@@ -75,10 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Inventory.wsgi.application'
 
-AUTHENTICATION_BACKENDS = (
-    
-    'django.contrib.auth.backends.ModelBackend',
-)
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 

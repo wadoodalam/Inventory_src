@@ -1,14 +1,15 @@
-from django.shortcuts import (get_object_or_404,  render,  HttpResponseRedirect)
+from django.shortcuts import (get_object_or_404,  render,  HttpResponseRedirect,)
 from .models import ITInventory,Building,Department,Category,Manufacturer, Models, Steward, Vendor
 from django.db.models import Q
 from django.views.generic import UpdateView
-from .forms import InputForm, EditForm, CategoryForm, DepartmentForm, ManufacturerForm, ModelForm, StewardForm, VendorForm
+from .forms import RoomForm, BuildingForm, InputForm, EditForm, CategoryForm, DepartmentForm, ManufacturerForm, ModelForm, StewardForm, VendorForm
 from django.shortcuts import render, redirect, get_object_or_404
 import logging
 from django.http import HttpResponse
 import csv
 import logging
 from itertools import chain
+
 # Create your views here.
 def  Home (request):
     return render (request, "base.html")
@@ -83,6 +84,26 @@ def Vendor_entry(request):
         }
     return render(request, "vendor.html",context)
 
+def Building_entry(request):
+    form = BuildingForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "building.html",context)
+def Room_entry(request):
+    form = RoomForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "room.html",context)
+
+
 
 def Department_entry(request):
     form = DepartmentForm(request.POST or None)
@@ -97,9 +118,13 @@ def Department_entry(request):
 def list(request):
     if request.GET.get('q') is not None:
         query = request.GET.get('q')
-        IT_queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__iexact = query) | Q(buildingID__building_name__iexact = query) | Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__icontains = query)| Q(model_details__model_number__iexact = query) | Q(serial_number__icontains = query) | Q(departmentID__dept_name__iexact = query) | Q(room__room_number__iexact = query) | Q(vendor__vendor_name__iexact = query) | Q(manufacturerID__manufacturer_name__iexact = query))
+        IT_queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__icontains = query) | Q(buildingID__building_name__iexact = query) |
+        Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__iexact = query)| Q(model_details__model_number__iexact = query) |
+        Q(serial_number__iexact = query) | Q(departmentID__dept_name__iexact = query) | Q(room__room_number__iexact = query) | Q(vendor__vendor_name__iexact = query) | 
+        Q(manufacturerID__manufacturer_name__iexact = query) | Q(notes__icontains = query) | Q(stwd_name__stwd_name__icontains = query))
         context={
                 "IT_queryset": IT_queryset,
+
                 }
         if request.GET.get('generate report') is not None:
             return generate_report(request, IT_queryset)
@@ -110,6 +135,7 @@ def list(request):
 
     context={
         "IT_queryset": IT_queryset,
+
     }
 
     if request.GET.get('generate report') is not None:
