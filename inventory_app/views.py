@@ -12,7 +12,7 @@ from itertools import chain
 
 # Create your views here.
 def  Home (request):
-    return render (request, "base.html")
+    return render (request, "home.html")
 
 def Input_entry(request):
     form = InputForm(request.POST or None)
