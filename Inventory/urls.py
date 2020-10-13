@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.Home, name='home'),
     path('', views.Home, name='home'),
+    path('view/', views.list, name='view'),
 
     path('insert/', views.Input_entry, name='Input'),
     path('category/', views.Category_entry, name='category'),
@@ -31,11 +32,11 @@ urlpatterns = [
     path('stwd/', views.Steward_entry, name='steward'),
     path('vendor/', views.Vendor_entry, name='vendor'),
     path('building/', views.Building_entry, name='building'),
-    path('room/', views.Room_entry, name='room'),
 
-    path('view/', views.list, name='view'),
+
+
     path('view/<int:asset_tag>/delete', views.delete, name='delete'),
     path('view/<int:asset_tag>', views.update, name='edit'),
     path('accounts/',include('registration.backends.default.urls'))
-    #url(r'^accounts/', include('registration.backends.default.urls')),
+
 ]

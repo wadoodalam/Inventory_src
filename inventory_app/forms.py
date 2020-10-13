@@ -1,5 +1,5 @@
 from django import forms
-from .models import Building, Room, Department, Manufacturer, Steward, Models, Vendor, ITInventory, Category
+from .models import Building,  Department, Manufacturer, Steward, Models, Vendor, ITInventory, Category
 
 
 
@@ -8,7 +8,7 @@ class InputForm(forms.ModelForm):
         model = ITInventory
         fields = ['asset_tag','asset_description','category','class_details','stwd_name',
                      'last_inventory_date','accqusation_date','cost','manufacturerID','model_details','serial_number',
-                     'departmentID', 'buildingID', 'room', 'vendor', 'notes']
+                     'departmentID', 'buildingID', 'vendor', 'notes']
 
 
 class EditForm(forms.ModelForm):
@@ -16,12 +16,12 @@ class EditForm(forms.ModelForm):
         model = ITInventory
         fields = ['asset_description','category','class_details','stwd_name',
                      'last_inventory_date','accqusation_date','cost','manufacturerID','model_details','serial_number',
-                     'departmentID', 'buildingID', 'room', 'vendor', 'notes']
+                     'departmentID', 'buildingID', 'vendor', 'notes']
 
 class BuildingForm(forms.ModelForm):
     class Meta:
         model = Building
-        fields = ['building_name', 'building_address']
+        fields = ['building_name', 'building_address', 'room_number']
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -46,14 +46,9 @@ class ModelForm(forms.ModelForm):
 class StewardForm(forms.ModelForm):
     class Meta:
         model = Steward
-        fields = ['stwd_name', 'stwd_email', 'stwd_buidling_name','stwd_room']
+        fields = ['stwd_first_name', 'stwd_last_name' ,'stwd_email']
 
 class VendorForm(forms.ModelForm):
     class Meta:
         model = Vendor
         fields = ['vendor_name', 'vendor_email', 'vendor_supplier']
-
-class RoomForm(forms.ModelForm):
-    class Meta:
-        model = Room
-        fields = ['room_number']

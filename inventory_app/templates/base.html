@@ -20,12 +20,13 @@
         <a href="/models">Models</a>
         <a href="/vendor">Vendor</a>
         <a href="/building">Building</a>
-        <a href="/room">Room</a>
+        
       </div>
   </div>
   <div class = "authentication">
     {% if request.user.is_authenticated %}
     <a href="/accounts/logout">Logout</a>
+			<a>{{request.user.username}}</a>
     {% else %}
     <a href="/accounts/login">Login</a>
     {% endif %}
@@ -33,7 +34,7 @@
 </div>
 
 <div class="verticalCenter">
-	<h1> 
+	<h1>
 		{% block title %}
 		{% endblock %}
 	</h1>

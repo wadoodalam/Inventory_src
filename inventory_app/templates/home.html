@@ -1,19 +1,20 @@
 {% load static %}
 <head>
-	<link rel="stylesheet" href="{% static 'CSS/home.css' %}">
+	<link rel="stylesheet" href="{% static 'CSS/home.css' %}" >
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <div class="topnav">
-	<a class="active" href="/home">Home</a>
-	<a href="/view">View Current Devices</a>
-	<div class = "authentication">
-		{% if request.user.is_authenticated %}
-		<a href="/accounts/logout">Logout</a>
-		{% else %}
-		<a href="/accounts/login">Login</a>
-		{% endif %}
-	</div>
+    <a href="/home">Home</a>
+    <a href="/view">View Current Devices</a>
+		<div class = "authentication">
+			{% if request.user.is_authenticated %}
+			<a href="/accounts/logout">Logout</a>
+			<a>{{request.user.username}}</a>
+			{% else %}
+			<a href="/accounts/login">Login</a>
+			{% endif %}
+		</div>
   <div class="dropdown">
       <button class="dropbtn">Insert New Data
         <i class="fa fa-caret-down"></i>
@@ -27,7 +28,7 @@
         <a href="/models">Models</a>
         <a href="/vendor">Vendor</a>
         <a href="/building">Building</a>
-        <a href="/room">Room</a>
+      
       </div>
   </div>
 
@@ -38,9 +39,15 @@
 	<p> This website belongs to the Library and Information Technology services at Beloit College. Log in with your registered Beloit email to access the tool. If your email has not been authorized by the LITS, please contact the IT department </p>
 
 	<div>
+		{% if request.user.is_authenticated %}
+		<a href="/accounts/logout">
+			<button> LOG OUT </button>
+		{% else %}
 		<a href="/accounts/login">
 			<button> LOG IN </button>
 		</a>
+		</a>
+			{% endif %}
 	</div>
 
 </div>

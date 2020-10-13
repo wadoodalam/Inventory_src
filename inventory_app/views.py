@@ -2,7 +2,7 @@ from django.shortcuts import (get_object_or_404,  render,  HttpResponseRedirect,
 from .models import ITInventory,Building,Department,Category,Manufacturer, Models, Steward, Vendor
 from django.db.models import Q
 from django.views.generic import UpdateView
-from .forms import RoomForm, BuildingForm, InputForm, EditForm, CategoryForm, DepartmentForm, ManufacturerForm, ModelForm, StewardForm, VendorForm
+from .forms import  BuildingForm, InputForm, EditForm, CategoryForm, DepartmentForm, ManufacturerForm, ModelForm, StewardForm, VendorForm
 from django.shortcuts import render, redirect, get_object_or_404
 import logging
 from django.http import HttpResponse
@@ -94,15 +94,6 @@ def Building_entry(request):
         }
     return render(request, "building.html",context)
 
-def Room_entry(request):
-    form = RoomForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('/view')
-    context = {
-    "form": form,
-        }
-    return render(request, "room.html",context)
 
 
 def Department_entry(request):
@@ -120,8 +111,8 @@ def list(request):
         query = request.GET.get('q')
         IT_queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__icontains = query) | Q(buildingID__building_name__iexact = query) |
         Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__iexact = query)| Q(model_details__model_number__iexact = query) |
-        Q(serial_number__iexact = query) | Q(departmentID__dept_name__iexact = query) | Q(room__room_number__iexact = query) | Q(vendor__vendor_name__iexact = query) |
-        Q(manufacturerID__manufacturer_name__iexact = query) | Q(notes__icontains = query) | Q(stwd_name__stwd_name__icontains = query))
+        Q(serial_number__iexact = query) | Q(departmentID__dept_name__iexact = query) | Q(buildingID__room_number__iexact = query) | Q(vendor__vendor_name__iexact = query) |
+        Q(manufacturerID__manufacturer_name__iexact = query) | Q(notes__icontains = query) | Q(stwd_name__stwd_first_name__iexact = query) | Q(stwd_name__stwd_last_name__iexact = query))
         context={
                 "IT_queryset": IT_queryset,
 
@@ -154,6 +145,7 @@ def generate_report(request, IT_queryset):
                         row.last_inventory_date, row.accqusation_date, row.cost, row.manufacturerID, row.model_details, row.serial_number,
                         row.departmentID, row.buildingID, row.room, row.vendor, row.notes])
     return response
+
 
 def delete(request,asset_tag = None):
     instance = get_object_or_404(ITInventory, asset_tag = asset_tag)

@@ -6,15 +6,10 @@ from django.db import models
 class Building(models.Model):
     building_name = models.CharField(max_length = 100)
     building_address = models.CharField(max_length = 500)
-
-    def __str__(self):
-        return self.building_name
-class Room(models.Model):
     room_number = models.CharField(max_length = 200)
 
-
     def __str__(self):
-        return self.room_number
+        return "%s %s" % (self.building_name, self.room_number)
 
 class Category(models.Model):
     category_type = models.CharField(max_length = 500)
@@ -38,13 +33,13 @@ class Department(models.Model):
 
 
 class Steward(models.Model):
-    stwd_name = models.CharField(max_length = 500)
+    stwd_first_name = models.CharField(max_length = 500)
+    stwd_last_name = models.CharField(max_length = 500)
     stwd_email = models.CharField(max_length = 500)
-    stwd_buidling_name = models.ForeignKey(Building, on_delete = models.CASCADE)
-    stwd_room = models.ForeignKey(Room, on_delete = models.CASCADE)
-    def __str__(self):
-        return self.stwd_name
 
+    def __str__(self):
+        return "%s %s" % (self.stwd_first_name, self.stwd_last_name)
+#"%s %s" % (self.stwd_name, self.stwd_email)
 
 class Models(models.Model):
     model_number = models.CharField(max_length = 500)
@@ -76,7 +71,6 @@ class ITInventory (models.Model):
     serial_number = models.CharField(max_length=100)
     departmentID = models.ForeignKey(Department, on_delete = models.CASCADE)
     buildingID = models.ForeignKey(Building, on_delete = models.CASCADE, default='')
-    room =  models.ForeignKey(Room, on_delete = models.CASCADE, default='')
     vendor = models.ForeignKey(Vendor, on_delete = models.CASCADE)
     notes = models.TextField()
 
