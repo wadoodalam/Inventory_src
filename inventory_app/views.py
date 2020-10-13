@@ -119,9 +119,9 @@ def Department_entry(request):
 def list(request):
     if request.GET.get('q') is not None:
         query = request.GET.get('q')
-        IT_queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__icontains = query) | Q(buildingID__building_name__iexact = query) |
+        IT_queryset = ITInventory.objects.filter(Q(asset_tag__iexact = query) | Q(asset_description__icontains = query) | Q(room__building__building_name__iexact = query) |
         Q(accqusation_date__icontains = query) | Q(last_inventory_date__icontains = query) | Q(cost__iexact = query)| Q(model_details__model_number__iexact = query) |
-        Q(serial_number__iexact = query) | Q(departmentID__dept_name__iexact = query) | Q(buildingID__room_number__iexact = query) | Q(vendor__vendor_name__iexact = query) |
+        Q(serial_number__iexact = query) | Q(departmentID__dept_name__iexact = query) | Q(room__room_num__iexact = query) | Q(vendor__vendor_name__iexact = query) |
         Q(manufacturerID__manufacturer_name__iexact = query) | Q(notes__icontains = query) | Q(stwd_name__stwd_first_name__iexact = query) | Q(stwd_name__stwd_last_name__iexact = query))
         context={
                 "IT_queryset": IT_queryset,
@@ -149,11 +149,11 @@ def generate_report(request, IT_queryset):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename = "Inventory Report.csv" '
     writer = csv.writer(response)
-    writer.writerow(['asset_tag','asset_description','category','class_details','stwd_name''last_inventory_date','accqusation_date','cost','manufacturer','model_details','serial_number','department', 'building', 'room', 'vendor', 'notes'])
+    writer.writerow(['asset_tag','asset_description','category','class_details','stwd_name''last_inventory_date','accqusation_date','cost','manufacturer','model_details','serial_number','department',  'room', 'vendor', 'notes'])
     for row in IT_queryset:
         writer.writerow([row.asset_tag, row.asset_description, row.category, row.class_details, row.stwd_name,
                         row.last_inventory_date, row.accqusation_date, row.cost, row.manufacturerID, row.model_details, row.serial_number,
-                        row.departmentID, row.buildingID, row.room, row.vendor, row.notes])
+                        row.departmentID, row.room, row.vendor, row.notes])
     return response
 
 
