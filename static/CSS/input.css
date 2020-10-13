@@ -1,3 +1,10 @@
+body {
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-size: 2600px 1750px;
+  float: center;
+}
+
 .topnav {
   background-color: #333;
   overflow: hidden;
