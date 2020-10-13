@@ -28,7 +28,8 @@
         <a href="/department">Department</a>
         <a href="/models">Models</a>
         <a href="/vendor">Vendor</a>
-        <a href="/building">Building</a>
+        <a href="/room">Room</a>
+				<a href="/building">Building</a>
 
       </div>
   </div>
@@ -110,8 +111,8 @@
   <td>{{instance.model_details}}</td>
   <td>{{instance.serial_number}}</td>
   <td>{{instance.departmentID}}</td>
-  <td>{{instance.buildingID.building_name}}</td>
-  <td>{{instance.buildingID.room_number}}</td>
+  <td>{{instance.room.building}}</td>
+  <td>{{instance.room.room_num}}</td>
   <td>{{instance.vendor}}</td>
   <td>{{instance.notes}}</td>
 </tr>

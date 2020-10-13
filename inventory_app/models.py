@@ -1,15 +1,21 @@
 from django.db import models
 
 # Create your models here.
-
-
 class Building(models.Model):
-    building_name = models.CharField(max_length = 100)
+    building_name = models.CharField(max_length = 100, unique = True)
     building_address = models.CharField(max_length = 500)
-    room_number = models.CharField(max_length = 200)
+
 
     def __str__(self):
-        return "%s %s" % (self.building_name, self.room_number)
+        return self.building_name
+
+class Room(models.Model):
+    room_num = models.CharField(max_length = 200)
+    building = models.ForeignKey(Building, on_delete = models.CASCADE)
+    def __str__(self):
+        return  "%s %s" % (self.room_num, self.building)
+
+
 
 class Category(models.Model):
     category_type = models.CharField(max_length = 500)
@@ -70,7 +76,7 @@ class ITInventory (models.Model):
     model_details = models.ForeignKey(Models, on_delete = models.CASCADE)
     serial_number = models.CharField(max_length=100)
     departmentID = models.ForeignKey(Department, on_delete = models.CASCADE)
-    buildingID = models.ForeignKey(Building, on_delete = models.CASCADE, default='')
+    room = models.ForeignKey(Room, on_delete = models.CASCADE, default='')
     vendor = models.ForeignKey(Vendor, on_delete = models.CASCADE)
     notes = models.TextField()
 

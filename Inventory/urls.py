@@ -32,7 +32,7 @@ urlpatterns = [
     path('stwd/', views.Steward_entry, name='steward'),
     path('vendor/', views.Vendor_entry, name='vendor'),
     path('building/', views.Building_entry, name='building'),
-
+    path('room/', views.Room_entry, name='room'),
 
 
     path('view/<int:asset_tag>/delete', views.delete, name='delete'),

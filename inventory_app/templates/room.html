@@ -35,9 +35,9 @@
   </div>
 
 </div>
-{% if perms.inventory_app.add_department %}
+{% if perms.inventory_app.add_vendor %}
 {% if request.user.is_authenticated %}
-<h1> INSERT NEW DEPARTMENT </h1>
+<h1> INSERT NEW Room </h1>
 
 <form method="post" action="">
         {% csrf_token %}

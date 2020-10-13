@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Building,Department,Manufacturer,ITInventory, Steward,Vendor,Models, Category
-
+from .models import Room,Building,Department,Manufacturer,ITInventory, Steward,Vendor,Models, Category
+admin.site.register(Room)
 admin.site.register(Building)
 admin.site.register(Department)
 admin.site.register(Manufacturer)

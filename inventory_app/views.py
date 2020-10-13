@@ -1,8 +1,8 @@
 from django.shortcuts import (get_object_or_404,  render,  HttpResponseRedirect,)
-from .models import ITInventory,Building,Department,Category,Manufacturer, Models, Steward, Vendor
+from .models import Room,ITInventory,Building,Department,Category,Manufacturer, Models, Steward, Vendor
 from django.db.models import Q
 from django.views.generic import UpdateView
-from .forms import  BuildingForm, InputForm, EditForm, CategoryForm, DepartmentForm, ManufacturerForm, ModelForm, StewardForm, VendorForm
+from .forms import  RoomForm, BuildingForm, InputForm, EditForm, CategoryForm, DepartmentForm, ManufacturerForm, ModelForm, StewardForm, VendorForm
 from django.shortcuts import render, redirect, get_object_or_404
 import logging
 from django.http import HttpResponse
@@ -23,6 +23,16 @@ def Input_entry(request):
     "form": form,
         }
     return render(request, "input.html",context)
+
+def Room_entry(request):
+    form = RoomForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/view')
+    context = {
+    "form": form,
+        }
+    return render(request, "room.html",context)
 
 def Category_entry(request):
     form = CategoryForm(request.POST or None)
