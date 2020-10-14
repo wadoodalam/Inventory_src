@@ -32,7 +32,7 @@ body {
 h1 {
   text-align: center;
   padding: 0px 150px;
-  margin-bottom: 0px;
+  margin-bottom: 20px;
 }
 
 .searchbar {
@@ -60,6 +60,8 @@ button {
   text-align: center;
   float: center;
   padding: 15px;
+  width: 50%;
+  margin: auto;
 }
 
 .dropdown {

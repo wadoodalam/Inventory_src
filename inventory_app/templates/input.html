@@ -36,31 +36,33 @@
 
 </div>
 
-{% if perms.inventory_app.add_itinventory %}
-{% if request.user.is_authenticated %}
-<h1> INSERT NEW DEVICES </h1>
+<div class = "verticalCenter">
+  {% if perms.inventory_app.add_itinventory %}
+  {% if request.user.is_authenticated %}
+  <h1> INSERT NEW DEVICES </h1>
+  <div></div>
+  <form method="post" action="">
+          {% csrf_token %}
+          <table>
+              {% for field in form %}
+                  <tr>
+                      <td>{{ field.label}}</td>
+                      <td>{{ field }}</td>
+                  </tr>
+              {% endfor %}
+          </table>
+          <button type = "submit"> SAVE </button>
+  </form>
 
-<form method="post" action="">
-        {% csrf_token %}
-        <table>
-            {% for field in form %}
-                <tr>
-                    <td>{{ field.label}}</td>
-                    <td>{{ field }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <button type = "submit"> SAVE </button>
-</form>
+  {% else %}
+  <br>
 
-{% else %}
-<br>
+  <h1> Please Login </h1>
+  {% endif %}
 
-<h1> Please Login </h1>
-{% endif %}
-
-{% else %}
-	<div>
-		<h2>You Don't Have Permission To Input</h2>
-	</div>
-{% endif %}
+  {% else %}
+    <div>
+      <h2>You Don't Have Permission To Input</h2>
+    </div>
+  {% endif %}
+</div>
