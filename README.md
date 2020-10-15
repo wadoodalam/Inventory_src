@@ -46,7 +46,7 @@ pip install mysqlclient
 python manage.py makemigrations
 python manage.py migrate
 ```
-7/ Depend on your use case, you can follow this [user manual](https://docs.google.com/document/d/10sXVrJy-zxhvN_HQGPUmI2P6xMk7Q_nM5BPucYE5sLE) to run the server and explore the provided features
+7/ Depend on your use case, you can follow this [user manual](https://docs.google.com/document/d/1xQWLiEkfOkFk6WqJCQ_qlSs1no2suOssHMw1w1QKDU4/edit#heading=h.n1vy2s2u69cz) to run the server and explore the provided features
 
 ## For future developers: Project Organization
 
