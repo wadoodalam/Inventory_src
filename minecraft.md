@@ -103,4 +103,28 @@ Voila! You have minecraft installed!
 
 ## Autostart Minecraft Server
 Now let us look at how to automatically start our minecraft server as soon as the instance starts running.
+- Once you are ssh'd into your instance as root, run the following to create/edit minecraft.service file which will help us with auto-starting the server. 
+  - Run the command: ```sudo vim /etc/systemd/system/minecraft.service```
+  - Now edit the file with the following info:
+    ```
+    [Unit]
+    Description=Minecraft Server
+    After=network.target
 
+    [Service]
+    User=minecraft
+    WorkingDirectory=/opt/minecraft/server
+    ExecStart=/usr/bin/java -Xmx1024M -Xms1024M -jar server.jar nogui
+
+    Restart=always
+    RestartSec=30
+
+    RemainAfterExit=true
+
+    [Install]
+    WantedBy=multi-user.target
+     ```
+  - Now we will use ```systemctl``` to enable and start the by running the following commands:
+    - ``` sudo systemctl enable minecraft.service```
+    - ``` sudo systemctl start minecraft.service```
+- The next time you your instance will reboot, your minecraft server will restart automatically. You can also confirm this by ssh'ing in your instance and the running the command ```systemctl status minecraft```.
