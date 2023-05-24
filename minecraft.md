@@ -11,8 +11,8 @@ We will be creating our own minecraft server for the JAVA version using AWS EC-2
 - [Install Java](#install-java)
 - [Install Minecraft](#install-minecraft)
 - [Run Minecraft Server](#run-minecraft-server)
-- [Contributing](#contributing)
-- [License](#license)
+- [Autostart Minecraft Server](#autostart-minecraft-server)
+
 
 ## Tools Required
 
@@ -101,11 +101,6 @@ Voila! You have minecraft installed!
 3) Now navigate to your EC2 dashboard and and the get the public IP/IPv4 address of your minecraft instance to access your minecraft server.
 
 
-## Contributing
-
-Indicate if you are open to contributions and how others can contribute to your project. Include guidelines for bug reports, feature requests, or pull requests.
-
-## License
-
-Specify the license under which your project is distributed. If you are using an open-source license, provide a link to the license file.
+## Autostart Minecraft Server
+Now let us look at how to automatically start our minecraft server as soon as the instance starts running.
 
