@@ -98,7 +98,7 @@ Voila! You have minecraft installed!
 <img width="1407" alt="Screenshot 2023-05-23 at 8 23 35 PM" src="https://github.com/wadoodalam/Inventory_src/assets/42946189/1381d519-af88-4a99-883e-d258eab5b544">
 
 
-3) Now navigate to your EC2 dashboard and and the get the public IP/IPv4 address of your minecraft instance to access your minecraft server.
+3. Now navigate to your EC2 dashboard and and the get the public IP/IPv4 address of your minecraft instance to access your minecraft server.
 
 
 ## Autostart Minecraft Server
